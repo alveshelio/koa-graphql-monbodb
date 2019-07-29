@@ -4,7 +4,7 @@ const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   entry: {
-    server: './server.js',
+    server: './src/server.js',
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -17,11 +17,6 @@ module.exports = {
     historyApiFallback: true,
   },
   target: 'node',
-  node: {
-    // Need this when working with express, otherwise build fails
-    __dirname: false,
-    __filename: false,
-  },
   externals: [nodeExternals()],
   module: {
     rules: [
