@@ -1,6 +1,7 @@
 import { GraphQLString, GraphQLObjectType, GraphQLSchema } from 'graphql'
 
 import GadgetType from './gadgetType';
+import Mutations from './mutations'
 import Gadget from '../database/models/gadgets'
 
 const RootQuery = new GraphQLObjectType({
@@ -10,10 +11,11 @@ const RootQuery = new GraphQLObjectType({
       type: GadgetType,
       args: { id: { type: GraphQLString }},
       resolve: (parent, args) => Gadget.findById(args.id)
-    }
+    },
   }
 });
 
 export default new GraphQLSchema({
-  query: RootQuery
+  query: RootQuery,
+  mutation: Mutations
 })
