@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc.js,./package.json,./npm-debug.log --copy-files",
-    "start": "npm run build && pm2 start dist/src/server.js --name 'koa-graphql' --watch"
+    "start": "npm run build && nodemon dist/src/server.js"
   },
   "keywords": [],
   "author": "",

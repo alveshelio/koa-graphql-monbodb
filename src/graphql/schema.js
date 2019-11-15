@@ -1,4 +1,4 @@
-import { GraphQLString, GraphQLObjectType, GraphQLSchema } from 'graphql'
+import { GraphQLString, GraphQLObjectType, GraphQLSchema, GraphQLList } from 'graphql'
 
 import GadgetType from './gadgetType';
 import Mutations from './mutations'
@@ -9,9 +9,15 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     gadget: {
       type: GadgetType,
-      args: { id: { type: GraphQLString }},
-      resolve: (parent, args) => Gadget.findById(args.id)
+      args: {
+        id: { type: GraphQLString }
+      },
+      resolve: async (parent, { id }) => await Gadget.findById(id)
     },
+    gadgets: {
+      type: new GraphQLList(GadgetType),
+      resolve: async () => await Gadget.find()
+    }
   }
 });
 

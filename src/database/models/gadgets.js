@@ -9,4 +9,6 @@ const GadgetSchema = new Schema({
   price: Number,
 });
 
+mongoose.set('useFindAndModify', false);
+
 export default mongoose.model('Gadget', GadgetSchema);
